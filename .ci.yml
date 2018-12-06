@@ -1,0 +1,10 @@
+image: maven:latest
+
+compile:
+    stage: build
+    script:
+        - mvn clean compile --batch-mode
+
+verify:
+    script:
+        - mvn verify --batch-mode
