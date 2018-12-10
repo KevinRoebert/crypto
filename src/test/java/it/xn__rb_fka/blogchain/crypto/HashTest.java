@@ -24,4 +24,14 @@ public class HashTest {
 		assertEquals(expectedHash, Hashing.doubleHash(input));
 		assertFalse(Hashing.doubleHash(input).equals("FooBar"));
 	}
+	
+	@Test
+	public void md5Test()
+	{
+		String input = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
+		String expectedHash = "818C6E601A24F72750DA0F6C9B8EBE28";
+		
+		assertEquals(expectedHash, Hashing.md5(input));
+		assertFalse(Hashing.md5(input).equals("FooBar"));
+	}
 }
