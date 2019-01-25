@@ -37,7 +37,7 @@ public class ECDSATest {
 		String signature = "";
 			
 		signature = r.sign(message);
-		assertTrue(ECDSA.verifySign(message, signature, ECDSA.pubKey2Base64(r.getPublicKey())));	
+		assertTrue(ECDSA.verifySign(message, signature, new ECDSA().pubKey2Base64(r.getPublicKey())));	
 	}
 
 }

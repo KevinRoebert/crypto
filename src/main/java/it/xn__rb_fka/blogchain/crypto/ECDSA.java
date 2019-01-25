@@ -154,7 +154,7 @@ public class ECDSA {
 	{
 		try {
 			Signature s = Signature.getInstance("SHA512withECDSA", "BC");
-			s.initVerify(base642PubKey(pubKey));
+			s.initVerify(new ECDSA().base642PubKey(pubKey));
 			s.update(message.getBytes("UTF8"));
 			
 			return s.verify(Base64.getDecoder().decode(sign));
@@ -206,7 +206,7 @@ public class ECDSA {
 	 * @return PublicKey Objekt
 	 * @throws RSAException 
 	 */
-	public static PublicKey base642PubKey(String pubKey) throws ECDSAException
+	public PublicKey base642PubKey(String pubKey) throws ECDSAException
 	{
 
 		try {		
@@ -228,7 +228,7 @@ public class ECDSA {
 	 * @param pubKey PublicKey der kodiert werdern soll
 	 * @return PublicKey als Base64 String
 	 */
-	public static String pubKey2Base64(PublicKey pubKey)
+	public String pubKey2Base64(PublicKey pubKey)
 	{
 		X509EncodedKeySpec x509EncodedKeySpec = new X509EncodedKeySpec(pubKey.getEncoded());
 		
@@ -242,7 +242,7 @@ public class ECDSA {
 	 * @return PrivateKey Objekt
 	 * @throws RSAException 
 	 */
-	public static PrivateKey base642PrivKey(String privKey) throws ECDSAException
+	public PrivateKey base642PrivKey(String privKey) throws ECDSAException
 	{
 		try {
 			byte[] key = Base64.getDecoder().decode(privKey);
@@ -262,7 +262,7 @@ public class ECDSA {
 	 * @param privKey PrivateKey Objekt das kodiert werden soll
 	 * @return PrivateKey als Base64 String
 	 */
-	public static String privKey2Base64(PrivateKey privKey)
+	public String privKey2Base64(PrivateKey privKey)
 	{
 		PKCS8EncodedKeySpec pkcs8EncodedKeySpec = new PKCS8EncodedKeySpec(privKey.getEncoded());
 		
