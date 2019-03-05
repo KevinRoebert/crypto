@@ -2,6 +2,13 @@ package it.xn__rb_fka.blogchain.crypto;
 
 import static org.junit.Assert.*;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.security.DigestInputStream;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 import org.junit.Test;
 
 public class HashTest {
@@ -13,6 +20,19 @@ public class HashTest {
 		
 		assertEquals(expectedHash, Hashing.sha256(input));
 		assertFalse(Hashing.sha256(input).equals("FooBar"));
+	}
+	
+	@Test
+	public void streamTest() throws NoSuchAlgorithmException, IOException
+	{
+		String input = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
+		String expectedHash = "973153F86EC2DA1748E63F0CF85B89835B42F8EE8018C549868A1308A19F6CA3";
+		InputStream is = new ByteArrayInputStream(input.getBytes());
+		DigestInputStream dis = new DigestInputStream(is, MessageDigest.getInstance("SHA-256"));
+		dis.read(new byte[input.getBytes().length]);
+		
+		assertEquals(expectedHash, Hashing.sha256(dis));
+		assertFalse(Hashing.sha256(dis).equals("FooBar"));
 	}
 	
 	@Test
