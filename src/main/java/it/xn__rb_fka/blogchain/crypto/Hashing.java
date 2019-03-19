@@ -2,6 +2,7 @@ package it.xn__rb_fka.blogchain.crypto;
 
 import java.nio.charset.StandardCharsets;
 import java.security.DigestInputStream;
+import java.security.DigestOutputStream;
 import java.security.MessageDigest;
 
 public class Hashing {
@@ -50,6 +51,26 @@ public class Hashing {
 	 * @return SHA256 Hash von digestStream
 	 */
 	public static String sha256(DigestInputStream digestStream) {
+		StringBuffer sb = new StringBuffer();
+		
+		MessageDigest digest = digestStream.getMessageDigest();
+		byte byteData[] = digest.digest();
+
+		for (int i = 0; i < byteData.length; i++) {
+			sb.append(Integer.toString((byteData[i] & 0xff) + 0x100, 16).substring(1));
+		}
+		
+		return sb.toString().toUpperCase();
+	}
+	
+	/**
+	 * Berechnet einen SHA256 Hashwert von einem gegebenen DigestInputStream.
+	 * 
+	 * @param digestStream
+	 *            DigestOutputStream von dem der Hashwert berechnet werden soll
+	 * @return SHA256 Hash von digestStream
+	 */
+	public static String sha256(DigestOutputStream digestStream) {
 		StringBuffer sb = new StringBuffer();
 		
 		MessageDigest digest = digestStream.getMessageDigest();
