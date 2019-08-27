@@ -1,20 +1,30 @@
-package it.xn__rb_fka.blogchain.crypto;
+package eu.roebert.crypto;
 
 import static org.junit.Assert.*;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.nio.charset.StandardCharsets;
 import java.security.DigestInputStream;
 import java.security.DigestOutputStream;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+import org.apache.commons.io.FileUtils;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.TemporaryFolder;
+
+import eu.roebert.crypto.crypto.Hashing;
 
 public class HashTest {
+    @Rule
+    public TemporaryFolder folder= new TemporaryFolder();
+    
 	@Test
 	public void sha256Test() 
 	{
@@ -72,5 +82,17 @@ public class HashTest {
 		
 		assertEquals(expectedHash, Hashing.md5(input));
 		assertFalse(Hashing.md5(input).equals("FooBar"));
+	}
+	
+	@Test
+	public void fileTest() throws IOException {
+	    String input = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
+        String expectedHash = "973153F86EC2DA1748E63F0CF85B89835B42F8EE8018C549868A1308A19F6CA3";
+        
+        File tempFile = folder.newFile();
+        FileUtils.write(tempFile, input, StandardCharsets.UTF_8);
+        
+        assertEquals(expectedHash, Hashing.sha256(tempFile));
+        assertFalse(Hashing.sha256(tempFile).equals("FooBar"));
 	}
 }

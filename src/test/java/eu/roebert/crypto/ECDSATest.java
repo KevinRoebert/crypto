@@ -1,10 +1,12 @@
-package it.xn__rb_fka.blogchain.crypto;
+package eu.roebert.crypto;
 
 import static org.junit.Assert.*;
 import java.io.IOException;
 import org.junit.Test;
 
-import it.xn__rb_fka.blogchain.exceptions.ECDSAException;
+import eu.roebert.crypto.crypto.AES;
+import eu.roebert.crypto.crypto.ECDSA;
+import eu.roebert.crypto.exceptions.ECDSAException;
 
 public class ECDSATest {
 

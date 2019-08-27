@@ -1,9 +1,9 @@
-package it.xn__rb_fka.blogchain.crypto;
+package eu.roebert.crypto.crypto;
 
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.security.DigestInputStream;
 import java.security.DigestOutputStream;
@@ -90,13 +90,18 @@ public class Hashing {
      * Berechnet einen SHA256 Hashwert von einer gegebenen Datei.
      * 
      * @param file Datei von der der Hashwert berechnet werden soll
-     * @return SHA245 Hash von der Datei
+     * @return SHA256 Hash von der Datei
      */
     public static String sha256(File file) {
-        try {
-            return sha256(new DigestInputStream(new BufferedInputStream(new FileInputStream(file)),
-                    MessageDigest.getInstance("SHA-256")));
-        } catch (FileNotFoundException | NoSuchAlgorithmException e) {
+        try (DigestInputStream dis = new DigestInputStream(new BufferedInputStream(new FileInputStream(file)),
+                MessageDigest.getInstance("SHA-256"))) {
+
+            byte buffer[] = new byte[8096];
+            while ((dis.read(buffer)) != -1) {
+            }
+
+            return sha256(dis);
+        } catch (NoSuchAlgorithmException | IOException e) {
             e.printStackTrace();
             return "";
         }

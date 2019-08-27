@@ -1,4 +1,4 @@
-package it.xn__rb_fka.blogchain.crypto;
+package eu.roebert.crypto.crypto;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -27,7 +27,7 @@ import java.util.Base64;
 import org.bouncycastle.jce.ECNamedCurveTable;
 import org.bouncycastle.jce.spec.ECParameterSpec;
 
-import it.xn__rb_fka.blogchain.exceptions.ECDSAException;
+import eu.roebert.crypto.exceptions.ECDSAException;
 
 
 

@@ -1,4 +1,4 @@
-package it.xn__rb_fka.blogchain.crypto;
+package eu.roebert.crypto.crypto;
 
 import java.io.UnsupportedEncodingException;
 import java.security.InvalidAlgorithmParameterException;
