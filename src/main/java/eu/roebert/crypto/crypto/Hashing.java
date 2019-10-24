@@ -15,7 +15,7 @@ public class Hashing {
     /**
      * Berechnet einen SHA256 Hashwert von einem gegebenen String.
      * 
-     * @param message String von dem der Hashwert berechnert werden soll
+     * @param message String von dem der Hashwert berechnet werden soll
      * @return SHA256 Hash von message
      */
     public static String sha256(String message) {
@@ -110,7 +110,7 @@ public class Hashing {
     /**
      * Erstellt einen double SHA256 Hashwert von einem gegebenen String.
      * 
-     * @param message String von dem der Hashwert berechnert werden soll
+     * @param message String von dem der Hashwert berechnet werden soll
      * @return double SHA256 Hash von message
      */
     public static String doubleHash(String message) {
@@ -120,7 +120,7 @@ public class Hashing {
     /**
      * Erstellt einen double SHA256 Hashwert von einem gegebenen Byte-Array.
      * 
-     * @param message Byte-Array von dem der Hashwert berechnert werden soll
+     * @param message Byte-Array von dem der Hashwert berechnet werden soll
      * @return double SHA256 Hash von message
      */
     public static String doubleHash(byte[] message) {
